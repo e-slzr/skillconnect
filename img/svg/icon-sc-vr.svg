@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 445.38 297.54">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-family: Poppins-ExtraBold, Poppins;
+        font-size: 67.47px;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: url(#Degradado_sin_nombre);
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" x="148.1" width="149.18" height="157.46"/>
+    </clipPath>
+    <linearGradient id="Degradado_sin_nombre" data-name="Degradado sin nombre" x1="4116.3" y1="13886.22" x2="5154.2" y2="16414.93" gradientTransform="translate(-57.09 -834.74) scale(.06)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".96" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="Capa_2-2" data-name="Capa_2">
+    <g id="Capa_1-2">
+      <g class="cls-4">
+        <path class="cls-3" d="M254.77,34.42l-9.4,33.51c-.7,2.48,1.17,4.95,3.75,4.95h34.2c1.75,0,3.28-1.16,3.75-2.84l9.4-33.51c.7-2.48-1.17-4.95-3.75-4.95h-34.2c-1.75,0-3.28,1.16-3.75,2.84ZM207.81,86.39l-18.26,65.09c-.7,2.48,1.17,4.95,3.75,4.95h66.53c1.75,0,3.28-1.16,3.75-2.84l18.26-65.09c.7-2.48-1.17-4.95-3.75-4.95h-66.53c-1.75,0-3.28,1.16-3.75,2.84ZM190.51,122.01l9.4-33.51c.7-2.48-1.17-4.95-3.75-4.95h-34.19c-1.75,0-3.28,1.16-3.75,2.84l-9.41,33.51c-.7,2.48,1.17,4.95,3.75,4.95h34.2c1.75,0,3.28-1.16,3.75-2.84ZM233.72,72.88h-66.53c-2.58,0-4.45-2.46-3.75-4.95L181.71,2.84c.47-1.68,2-2.84,3.75-2.84h66.53c2.58,0,4.45,2.46,3.75,4.95l-18.26,65.09c-.47,1.68-2,2.84-3.75,2.84h0Z"/>
+      </g>
+    </g>
+    <text class="cls-1" transform="translate(0 255.98)"><tspan x="0" y="0">SkillConnect</tspan></text>
+  </g>
+</svg>
