@@ -6,11 +6,15 @@ body {
 /* Estilos básicos para el encabezado */
 header {
     display: flex;
+    position: fixed;
+    top: 0px;
     width: 100%;
+    height: 64px;
     padding: 10px 15px;
     background-color: #042254;
     transition: 0.5s;
     align-items: center;
+    z-index: 100;
 }
 header img {
     padding: 3px;
@@ -20,6 +24,12 @@ header p, header a, header label {
     margin: 0px 10px;
     margin-left: auto;
     text-decoration: none;
+}
+h2 {
+    background-color: #042254;
+    color: white;
+    padding: 15px 15px;
+    border-radius: 5px;
 }
 .espaciador {
     flex-grow: 1;
@@ -42,6 +52,10 @@ header p, header a, header label {
     position: absolute;
     margin-top: 95px;
 }
+.img-user {
+    height: 35px;
+    margin-right: 10px;
+}
 /* Estilo para el spinner */
 .spinner {
     width: 50px;
@@ -53,14 +67,20 @@ header p, header a, header label {
 }
 .form-busqueda {
     display: flex;
-    justify-content: space-between;
-    padding: 35px 80px;
+    justify-content: center;
+    padding: 2% 5%;
 }
 .form-busqueda input {
-    width: 25%;
+    width: 20%;
+    margin: 0px 10px;
 }
 .form-busqueda button {
-    width: 250px;
+    width: 20%;
+    margin: 0px 10px;
+}
+.form-busqueda div {
+    width: 20%;
+    margin: 0px 10px;
 }
 .carousel-item img {
     height: 250px;
@@ -69,8 +89,7 @@ header p, header a, header label {
 .contenedor-principal {
     width: 85%;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); */
     margin: auto;
     display: flex;
 }
@@ -78,7 +97,14 @@ header p, header a, header label {
     flex-grow: 1;
 }
 .menu-lateral {
-    width: 250px;
+    width: 750px;
+    /* background-color: gray; */
+    display: flex;
+    height: auto;
+}
+.menu-lateral a {
+    text-decoration: none;
+    color: #052659;
 }
 .separador-vertical {
     width: 1px;
@@ -100,6 +126,26 @@ header p, header a, header label {
 .div-radios {
     display: flex;
     justify-content: center;
+}
+.video-container{
+    margin-top: 50px;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: black;
+}
+.video-container video {
+    opacity: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.div-resultados {
+    /* border: 1px solid gray; */
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -219,6 +265,10 @@ header p, header a, header label {
     .form-busqueda button {
         width: 90%;
     }
+    .form-busqueda div {
+        width: 90%;
+        margin: 0px 10px;
+    }
     .login-div-movil {
         width: 80%;
     }
@@ -230,6 +280,7 @@ header p, header a, header label {
     }
     .contenedor-principal {
         flex-direction: column;
+        width: 95%;
     }
     .form-busqueda-contenedor {
         max-height: 0;
@@ -239,6 +290,16 @@ header p, header a, header label {
     .form-busqueda-contenedor.active {
         max-height: 200px;
         transition: 0.5s;
+    }
+    .video-container{
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+    }
+    .video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     #menu-desplegable {
         width: 65px;

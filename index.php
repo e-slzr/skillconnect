@@ -54,27 +54,48 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <?php include 'include/header.php'; ?>
-    <?php include 'include/carrusel.php'; ?>
-    <?php include 'include/preloader.php'; ?>
+    <?php include 'include/banner.php'; ?>
+    <!-- <?php include 'include/preloader.php'; ?> -->
 
     <div class="div-titulo">
         <h1 class="titulo">Explora nuevas oportunidades y conecta con quienes buscan tu talento</h1>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
 
     <!-- Barra de búsqueda/filtros -->
     <button class="btn btn-primary d-block d-sm-none" id="mostrar-filtros">Buscar</button>
     <div class="form-busqueda-contenedor" id="form-busqueda">
         <form method="GET" action="index.php" class="form-busqueda">
-            <input type="text" class="form-control" name="busqueda" placeholder="Buscar por nombre" value="<?php echo $busqueda; ?>">
+            <!-- <input type="text" class="form-control" name="busqueda" placeholder="Buscar por nombre" value="<?php echo $busqueda; ?>"> -->
             <input type="text" class="form-control" name="profesion" placeholder="Profesión/Servicio" value="<?php echo $profesion; ?>">
-            <input type="text" class="form-control" name="ubicacion" placeholder="Ubicación" value="<?php echo $ubicacion; ?>">
+
+            <div class="input-group">
+                <select class="form-control custom-select">
+                    <option selected>Selecciona ubicación</option>
+                    <option value="1">Candelaria de la Frontera</option>
+                    <option value="2">Chalchuapa</option>
+                    <option value="3">Coatepeque</option>
+                    <option value="4">El Congo</option>
+                    <option value="5">El Porvenir</option>
+                    <option value="6">Masahuat</option>
+                    <option value="7">Metapán</option>
+                    <option value="8">San Antonio Pajonal</option>
+                    <option value="9">San Sebastián Salitrillo</option>
+                    <option value="10">Santa Ana</option>
+                    <option value="11">Santa Rosa Guachipilín</option>
+                    <option value="12">Santiago de la Frontera</option>
+                    <option value="13">Texistepeque</option>
+                </select>
+            </div>
+
+            <!-- <input type="text" class="form-control" name="ubicacion" placeholder="Ubicación" value="<?php echo $ubicacion; ?>"> -->
             <button type="submit" class="btn btn-primary" id="miboton">Buscar</button>
         </form>
     </div>
     <!-- finde barra de busqueda/filtros -->
 
     <hr class="my-3"> <!-- espaciado horizontal -->
+
 
     <!-- Resultados de búsqueda -->
     <div class="contenedor-principal">
@@ -93,12 +114,12 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- fin de menu desplegable movil -->
 
         <div class="resultados">
-            <h2>Resultados de búsqueda</h2>
+            <h2>Ofertas de empleo</h2>
             <?php if (empty($profesionales)) : ?>
                 <p>No se encontraron resultados.</p>
             <?php else : ?>
                 <?php foreach ($profesionales as $profesional) : ?>
-                    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+                    <div class="div-resultados">
                         <img src="<?php echo $profesional['foto_url']; ?>" alt="Foto de <?php echo $profesional['nombre']; ?>" width="100">
                         <h3><?php echo $profesional['nombre']; ?></h3>
                         <p>Profesión: <?php echo $profesional['profesion']; ?></p>
@@ -113,10 +134,21 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="separador-vertical d-none d-sm-block"></div>
         <div class="menu-lateral d-none d-sm-block">
-            <h2>Menu lateral</h2>
+            <!-- <h2>Menu lateral</h2> -->
+            
+            <ul class="list-group list-group-flush"> 
+                <li class="list-group-item" style="border: 1px solid red"><a href="#" class="list-group-link">Quiero ser Premium <img src="img/gif/star-animation.gif" alt="Descripción del GIF" width="30" height="auto"></a></li>
+                <li class="list-group-item"><a href="#" class="list-group-link">Últimas ofertas de trabajo!</a></li>
+                <li class="list-group-item"><a href="#" class="list-group-link">A second item</a></li>
+                <li class="list-group-item"><a href="#" class="list-group-link">A third item</a></li>
+                <li class="list-group-item"><a href="#" class="list-group-link">A fourth item</a></li>
+                <li class="list-group-item"><a href="#" class="list-group-link">And a fifth one</a></li>
+            </ul>
+
         </div>
      </div>
     
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
 
