@@ -7,47 +7,22 @@ body {
 header {
     display: flex;
     width: 100%;
-    padding: 10px;
-    justify-content: flex-end;
+    padding: 10px 15px;
     background-color: #042254;
-}
-header p {
-    color: #ffffff;
-    margin: 0;
-}
-header a {
-    text-decoration: none;
-    color: #ffffff; 
-    margin-left: 10px;
-}
-header label{
-    color: #ffffff; 
-    margin-left: 10px;
-}
-
-
-#body-login {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Altura completa de la ventana */
-    margin: 0; /* Elimina el margen por defecto */
-    background-color: #042254;
-}
-/* Estilos para el preloader */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #042254; /* Fondo blanco */
-    display: flex;
-    justify-content: center;
+    transition: 0.5s;
     align-items: center;
-    opacity: 1;
-    transition: opacity 0.5s ease; /* Transición suave de 0.5s */
-    z-index: 9999; /* Asegura que esté encima de otros elementos */
+}
+header img {
+    padding: 3px;
+}
+header p, header a, header label {
+    color: #ffffff;
+    margin: 0px 10px;
+    margin-left: auto;
+    text-decoration: none;
+}
+.espaciador {
+    flex-grow: 1;
 }
 .img-right {
     margin-left: auto;
@@ -57,12 +32,15 @@ header label{
     pointer-events: none;
 }
 .titulo {
-    color: #052659;
+    color: white;
+    text-align: center;
 }
 .div-titulo {
     display: flex;
     padding: 50px;
     justify-content: center;
+    position: absolute;
+    margin-top: 95px;
 }
 /* Estilo para el spinner */
 .spinner {
@@ -76,8 +54,7 @@ header label{
 .form-busqueda {
     display: flex;
     justify-content: space-between;
-    padding: 50px;
-    border: 1px solid red;
+    padding: 35px 80px;
 }
 .form-busqueda input {
     width: 25%;
@@ -85,7 +62,117 @@ header label{
 .form-busqueda button {
     width: 250px;
 }
+.carousel-item img {
+    height: 250px;
+    object-fit: cover;
+}
+.contenedor-principal {
+    width: 85%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin: auto;
+    display: flex;
+}
+.resultados{
+    flex-grow: 1;
+}
+.menu-lateral {
+    width: 250px;
+}
+.separador-vertical {
+    width: 1px;
+    background-color: gray;
+    margin: 0px 20px;
+}
+.contenedor-oferta {
+    width: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin: auto;
+    display: flex;
+}
+.contenedor-button button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.div-radios {
+    display: flex;
+    justify-content: center;
+}
 
+
+/* *********************************** */
+/* *********************************** */
+/* configuracion CSS por medio de id's */
+/* *********************************** */
+/* *********************************** */
+#body-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #042254;
+}
+#button {
+    background-color: #5483b3;
+    color: #052659;
+    border:none;
+    width: 100%;
+}
+#button:hover {
+    background-color: #c1e8ff;
+}
+#miboton {
+    background-color: #042254;
+    border: none;
+}
+#miboton:hover {
+    background-color: #c1e8ff;
+    border: none;
+    color: #042254;
+}
+#mostrar-filtros {
+    border-radius: 0%;
+    background-color: #5483b3;
+    border: none;
+    color: white;
+}
+#registro-div {
+    width: 600px;
+}
+#registro-div-movil {
+    width: 80%;
+}
+#error-contrasena {
+    display: none;
+    color: white;
+    background-color: #dc3545;
+    margin: 20px 0px;
+    height: 35px;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Estilos para el preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #042254;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 9999;
+}
 /* Animación de giro */
 @keyframes girar {
     from {
@@ -96,31 +183,28 @@ header label{
     }
 }
 
-#button {
-    background-color: #5483b3;
-    color: #052659;
-    border:none;
-    width: 100%;
-}
-
-#button:hover {
-    background-color: #c1e8ff;
-}
-
-#login-div {
-    
-}
-
-#login-div-movil {
-}
 
 
 
 @media (max-width: 768px) {
-    body {
-        background-color: #ffffff;
+    /* Estilos básicos para el encabezado */
+    header {
         display: flex;
-        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        background-color: #042254;
+        transition: 0.5s;
+        align-items: center;
+        font-size: 10pt;
+    }
+    header img {
+        padding: 3px;
+    }
+    header p, header a, header label {
+        color: #ffffff;
+        margin: 0px 10px;
+        margin-left: auto;
+        text-decoration: none;
     }
     .form-busqueda {
         display: flex;
@@ -128,7 +212,6 @@ header label{
         align-items: center;
         padding: 20px;
         gap: 10px;
-        border: 1px solid red;
     }
     .form-busqueda input {
         width: 90%;
@@ -136,19 +219,47 @@ header label{
     .form-busqueda button {
         width: 90%;
     }
-    
     .login-div-movil {
         width: 80%;
     }
-    .login-div {
+    .div-titulo {
+        margin-top: 70px;
+    }
+    .contenedor-oferta {
+        width: 90%;
+    }
+    .contenedor-principal {
+        flex-direction: column;
+    }
+    .form-busqueda-contenedor {
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.5s;
+    }
+    .form-busqueda-contenedor.active {
+        max-height: 200px;
+        transition: 0.5s;
+    }
+    #menu-desplegable {
+        width: 65px;
+        height: 65px;
+        border-radius: 100%;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 15px;
+        border: none;
+        background-color: #042254;
+    }
+    #menu-desplegable:active {
+        background-color: #c1e8ff;
     }
 
 }
 
+
 @media (max-width: 480px) {
     .login-div-movil {
         width: 80%;
-    }
-    .login-div {
     }
 }

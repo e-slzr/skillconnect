@@ -48,44 +48,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillConnect | Crear perfil</title>
+    <title>SkillConnect | Publicar oferta</title>
 
-    <style>
-        /* Estilos básicos para el encabezado */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #042254;
-        }
-        header p {
-            color: #ffffff;
-            margin: 0;
-        }
-        header a {
-            text-decoration: none;
-            color: #ffffff;
-            margin-left: 10px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/mistilo.css">
 </head>
 <body>
-<header>
-        <p>Bienvenido, <?php echo htmlspecialchars($nombre_usuario); ?></p>
-        <a href="logout.php">Cerrar sesión</a>
-    </header>
-    <h2>Crear Perfil Profesional</h2>
-    <form method="POST" action="crear_perfil.php">
-        <input type="text" name="nombre" placeholder="Nombre" required>
-        <input type="text" name="profesion" placeholder="Profesión/Servicio" required>
-        <textarea name="descripcion" placeholder="Descripción del servicio" required></textarea>
-        <input type="number" step="0.01" name="honorarios" placeholder="Honorarios (USD)" required>
-        <input type="tel" name="telefono" placeholder="Teléfono de contacto" required>
-        <input type="text" name="ubicacion" placeholder="Ubicación" required>
-        <input type="text" name="whatsapp_url" placeholder="Enlace de WhatsApp">
-        <button type="submit">Crear Perfil</button>
-        <a href="index.php"><button type="button">Cancelar</button></a>
-    </form>
+    <?php include 'include/header.php'; ?>
+    <?php include 'include/carrusel.php'; ?>
+
+    <h2 style="text-align: center; margin: 20px 0px">Nueva oferta</h2>
+    <div class="contenedor-oferta">
+        <form method="POST" action="crear_perfil.php" class="form-control mb-3">
+            <input type="text" name="nombre" placeholder="Nombre del puesto" class="form-control mb-3" required>
+            <div class="">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Profesion
+                    </label>
+                </div>
+                <div class="form-check mb-3 form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Oficio
+                    </label>
+                </div>
+            </div>
+            <textarea name="descripcion" placeholder="Descripción del servicio" class="form-control mb-3" required ></textarea>
+            <div class="input-group">
+                <span class="input-group-text mb-3" id="basic-addon1">$</span>
+                <input type="number" step="0.01" name="honorarios" placeholder="Sueldo (USD)" class="form-control mb-3" required>
+            </div>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">@</span>
+                <input type="email" name="email" placeholder="Correo de contacto" class="form-control" required>
+            </div>
+            <input type="text" name="ubicacion" placeholder="Departamento" class="form-control mb-3" required>
+            <input type="tel" name="telefono" placeholder="Contacto de WhatsApp" class="form-control mb-3">
+            <div class="contenedor-button">
+                <button type="submit" class="btn btn-primary" id="miboton">Publicar oferta</button>
+                <a href="index.php"><button type="button" 
+                class="btn btn-danger">Cancelar</button></a>
+            </div>
+            
+        </form>
+    </div>
 </body>
 </html>

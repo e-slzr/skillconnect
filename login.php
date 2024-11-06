@@ -28,17 +28,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
+    <title>SkillConnect | Inicio de Sesión</title>
     <link rel="icon" type="image/x-icon" href="img/svg/icon_app.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/mistilo.css">
-</head>
-<body id="body-login">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
+</head>
+<body id="body-login">
+    <?php include 'include/preloader.php'; ?>
 
     <div class="d-none d-sm-block">
         <img src="img/svg/icon-sc-vr.svg" alt="icon-skillconnect" style="padding: 0px 25px">
@@ -74,8 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <hr class="my-3" style="color: white">
         <p style="color: white">¿No tienes una cuenta? <a href="register.php" style="text-decoration: none; color: #5483b3;">Regístrate aquí</a></p>
     </div>
-        
-    <script src="js/preloader.js"></script>
 </body>
 </html>
 
