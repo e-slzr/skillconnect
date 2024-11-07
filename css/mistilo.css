@@ -1,5 +1,8 @@
+a {
+    text-decoration: none;
+}
 body {
-    background-color: #ffffff;
+    background-color: #f6fbff;
     display: flex;
     flex-direction: column;
 }
@@ -24,6 +27,11 @@ header p, header a, header label {
     margin: 0px 10px;
     margin-left: auto;
     text-decoration: none;
+    transition: 0.2s;
+}
+header a:hover {
+    transition: 0.2s;
+    color: #e59a00;
 }
 h2 {
     background-color: #042254;
@@ -55,6 +63,11 @@ h2 {
 .img-user {
     height: 35px;
     margin-right: 10px;
+    transition: 0.2s;
+}
+.img-user:hover {
+    transition: 0.2s;
+    scale: 1.2;
 }
 /* Estilo para el spinner */
 .spinner {
@@ -89,22 +102,26 @@ h2 {
 .contenedor-principal {
     width: 85%;
     padding: 20px;
-    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); */
     margin: auto;
     display: flex;
 }
-.resultados{
-    flex-grow: 1;
-}
 .menu-lateral {
-    width: 750px;
-    /* background-color: gray; */
-    display: flex;
-    height: auto;
+    min-width: 300px;
+    max-width: 500px;
+    /* display: flex; */
+    height:max-content;
+    padding: 10px 10px 150px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: white;
 }
 .menu-lateral a {
     text-decoration: none;
     color: #052659;
+}
+.menu-lateral a:hover {
+    transition: 0.2s;
+    color: #e59a00;
 }
 .separador-vertical {
     width: 1px;
@@ -115,9 +132,13 @@ h2 {
     width: 30%;
     padding: 20px;
     border-radius: 10px;
+    background-color: white;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     margin: auto;
     display: flex;
+}
+.contenedor-oferta form {
+    padding: 25px 15px;
 }
 .contenedor-button button {
     width: 100%;
@@ -140,12 +161,89 @@ h2 {
     height: 100%;
     object-fit: cover;
 }
+.resultados{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
 .div-resultados {
-    /* border: 1px solid gray; */
+    display: flex;
+    flex-wrap: wrap;
     border-radius: 5px;
     padding: 25px;
-    margin-bottom: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    margin: 0px 20px 20px 0px;
+    /* border: 1px solid rgb(196, 196, 196); */
+    transition: 0.2s;
+    width: 400px;
+    flex-grow: 1;
+}
+.div-resultados:hover {
+    transition: 0.2s;
+    scale: 1.02;
+    border: 1px solid rgb(196, 196, 196);
+    box-shadow: 0px 4px 8px rgba(22, 121, 202, 0.5);
+}
+.icono-company {
+    background-color: #5483b3;
+    width: 80px;
+    height: 80px;
+    padding: 12px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+.div-resultados h3 {
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    /* max-width: 100px; */
+    flex-grow: 1;
+}
+.info-oferta {
+    width: 100%;
+    margin: 5px;
+    /* border: 1px solid black; */
+}
+.info-contenedor-btn{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: end;
+    /* border: 1px solid black; */
+}
+.info-contenedor-btn button{
+    border: none;
+    width: 150px;
+    background-color: #042254;
+}
+
+.info-contenedor-btn button:hover{
+    background-color: #254d94;
+}
+.info-oferta-contacto {
+    background-color: #578640;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+}
+.info-oferta-contacto:hover {
+    background-color: #74ad57;
+}
+.info-oferta-contacto a {
+    color: white;
+}
+.info-oferta-contacto img {
+    width: 20px;
+}
+.footer {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    bottom: 0;
+    margin-top: 50px;
+    background-color: #171a1f;
 }
 
 
@@ -176,9 +274,8 @@ h2 {
     border: none;
 }
 #miboton:hover {
-    background-color: #c1e8ff;
+    background-color: #254d94;
     border: none;
-    color: #042254;
 }
 #mostrar-filtros {
     border-radius: 0%;
@@ -201,6 +298,35 @@ h2 {
     border-radius: 7px;
     align-items: center;
     justify-content: center;
+}
+#alertaAplicacion {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1064;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+#alertaAplicacion div {
+    width: 400px;
+    height: 150px;
+    background-color: #042254;
+    color: white;
+    text-align: center;
+    align-content: center;
+    border-radius: 5px;
+}
+#boton-cerrar {
+    background-color: #dc3545;
+    color: white;
+}
+#boton-cerrar:hover {
+    background-color: #f54c5d;
 }
 
 
