@@ -193,9 +193,8 @@ h2 {
     margin-right: 20px;
 }
 .div-resultados h3 {
-    /* border: 1px solid black; */
-    /* width: 100%; */
-    /* max-width: 100px; */
+    width: 100%;
+    margin-top: 20px;
     flex-grow: 1;
 }
 .info-oferta {
@@ -277,6 +276,14 @@ h2 {
     background-color: #254d94;
     border: none;
 }
+#miboton1 {
+    background-color: #042254;
+    border: none;
+}
+#miboton1:hover {
+    background-color: #254d94;
+    border: none;
+}
 #mostrar-filtros {
     border-radius: 0%;
     background-color: #5483b3;
@@ -322,8 +329,8 @@ h2 {
     border-radius: 5px;
 }
 #boton-cerrar {
-    background-color: #dc3545;
-    color: white;
+    /* background-color: #dc3545; */
+    /* color: white; */
 }
 #boton-cerrar:hover {
     background-color: #f54c5d;

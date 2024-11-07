@@ -55,7 +55,7 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php include 'include/header.php'; ?>
     <?php include 'include/banner.php'; ?>
-    <!-- <?php include 'include/preloader.php'; ?> -->
+    <?php include 'include/preloader.php'; ?>
 
     <div class="div-titulo">
         <h1 class="titulo">Explora nuevas oportunidades y conecta con quienes buscan tu talento</h1>
@@ -136,53 +136,7 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="info-contenedor-btn">
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModalAplicar">Aplicar</button>
 
-                            
-                        <!-- Vertically centered modal -->
-                        <div class="modal fade" tabindex="-1" id="miModalAplicar">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Sube tu hoja de vida</h5>
-                                </div>
-                                <div class="modal-body">
-                                <div class="input-group mb-3">
-                                    <input type="file" class="form-control" id="inputGroupFile02">
-                                </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn" data-bs-dismiss="modal" id="boton-cerrar">Cerrar</button>
-                                    <button type="button" class="btn btn-primary" id="miboton1">Enviar</button>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Alerta personalizada -->
-                        <div class="" id="alertaAplicacion">
-                            <div>
-                                <strong>¡ENHORABUENA!</strong>
-                                <br>
-                                Has aplicado a esta oferta de trabajo.<br>
-                                <img src="img/gif/ok-animation.gif" alt="Descripción del GIF" width="50" height="auto">
-                            </div>
-                        </div>
-
-                        <!-- JavaScript para el botón "Enviar" -->
-                        <script>
-                        document.getElementById('miboton1').addEventListener('click', function() {
-                            // Mostrar alerta personalizada
-                            var alerta = document.getElementById('alertaAplicacion');
-                            alerta.style.display = 'flex';
-
-                            // Cerrar la alerta después de 2 segundos
-                            setTimeout(function() {
-                            alerta.style.display = 'none';
-                            }, 3000); // 3000 ms = 3 segundos
-
-                            // Cerrar el modal después de mostrar la alerta
-                            var modal = bootstrap.Modal.getInstance(document.getElementById('miModalAplicar'));
-                            modal.hide();
-                        });
-                        </script>
+                         
 
                             <div class="info-oferta-contacto btn btn-primary">
                                 <a href="https://wa.link/v4qi3y" target="_blank"><img src="./img/svg/ico-wsp-white.svg" alt="ico-wsp"> | Más información</a>
@@ -193,6 +147,55 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             <?php endif; ?>
             <!-- Fin de tarjeta -->
+
+               
+        <!-- Vertically centered modal -->
+        <div class="modal" tabindex="-1" id="miModalAplicar">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sube tu hoja de vida</h5>
+                </div>
+                <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02">
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="boton-cerrar">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="miboton1">Enviar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerta personalizada -->
+        <div class="" id="alertaAplicacion">
+            <div>
+                <strong>¡ENHORABUENA!</strong>
+                <br>
+                Has aplicado a esta oferta de trabajo.<br>
+                <img src="img/gif/ok-animation.gif" alt="Descripción del GIF" width="50" height="auto">
+            </div>
+        </div>
+
+        <!-- JavaScript para el botón "Enviar" -->
+        <script>
+        document.getElementById('miboton1').addEventListener('click', function() {
+            // Mostrar alerta personalizada
+            var alerta = document.getElementById('alertaAplicacion');
+            alerta.style.display = 'flex';
+
+            // Cerrar la alerta después de 2 segundos
+            setTimeout(function() {
+            alerta.style.display = 'none';
+            }, 3000); // 3000 ms = 3 segundos
+
+            // Cerrar el modal después de mostrar la alerta
+            var modal = bootstrap.Modal.getInstance(document.getElementById('miModalAplicar'));
+            modal.hide();
+        });
+        </script>
 
         </div>
         <div class="separador-vertical d-none d-sm-block"></div>
