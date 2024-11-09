@@ -136,19 +136,16 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="info-contenedor-btn">
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModalAplicar">Aplicar</button>
 
-                         
 
                             <div class="info-oferta-contacto btn btn-primary">
                                 <a href="https://wa.link/v4qi3y" target="_blank"><img src="./img/svg/ico-wsp-white.svg" alt="ico-wsp"> | Más información</a>
                             </div>
                         </div>
                     </div>
-                    
                 <?php endforeach; ?>
             <?php endif; ?>
             <!-- Fin de tarjeta -->
 
-               
         <!-- Vertically centered modal -->
         <div class="modal" tabindex="-1" id="miModalAplicar">
             <div class="modal-dialog">
