@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="mistilo.css">
-
 <div class="video-container">
     <video autoplay loop muted playsinline>
         <source src="./img/video/banner.mp4" type="video/mp4">

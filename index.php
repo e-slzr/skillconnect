@@ -40,7 +40,7 @@ if ($busqueda) {
 }
 $stmt->execute();
 $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+?> 
 
 <!DOCTYPE html>
 <html lang="es">
@@ -50,12 +50,12 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>SkillConnect | Bienvenido</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/mistilo.css">
+    <link rel="stylesheet" href="./css/miestilo.css">
 </head>
 <body>
     <?php include 'include/header.php'; ?>
     <?php include 'include/banner.php'; ?>
-    <?php include 'include/preloader.php'; ?>
+    <!-- <?php include 'include/preloader.php'; ?> -->
 
     <div class="div-titulo">
         <h1 class="titulo">Explora nuevas oportunidades y conecta con quienes buscan tu talento</h1>
@@ -67,11 +67,11 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="form-busqueda-contenedor" id="form-busqueda">
         <form method="GET" action="index.php" class="form-busqueda">
             <!-- <input type="text" class="form-control" name="busqueda" placeholder="Buscar por nombre" value="<?php echo $busqueda; ?>"> -->
-            <input type="text" class="form-control" name="profesion" placeholder="Profesión/Servicio" value="<?php echo $profesion; ?>">
+            <input type="text" class="form-control" name="profesion" placeholder="Busca por nombre" value="<?php echo $profesion; ?>">
 
             <div class="input-group">
                 <select class="form-control custom-select" name="ubicacion">
-                    <option selected value="">Selecciona ubicación</option>
+                    <option selected value="">Todas las ubicaciones</option>
                     <option value="Candelaria de la Frontera">Candelaria de la Frontera</option>
                     <option value="Chalchuapa">Chalchuapa</option>
                     <option value="Coatepeque">Coatepeque</option>
@@ -85,6 +85,14 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <option value="1Santa Rosa Guachipilín1">Santa Rosa Guachipilín</option>
                     <option value="Santiago de la Frontera">Santiago de la Frontera</option>
                     <option value="Texistepeque">Texistepeque</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <select class="form-control custom-select" name="categorias">
+                    <option selected value="">Todas las categorias</option>
+                    <option value="Candelaria de la Frontera">Profesiones</option>
+                    <option value="Chalchuapa">Oficios</option>
+                    <option value="Coatepeque">Pasantias</option>
                 </select>
             </div>
 
@@ -106,7 +114,7 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <img src="img/svg/icon-menu.svg" alt="">
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><button class="dropdown-item" type="button">Opcion 1</button></li>
+                <li>rgb(180, 180, 180);<button class="dropdown-item" type="button">Opcion 1</button></li>
                 <li><button class="dropdown-item" type="button">Opcion 2</button></li>
                 <li><button class="dropdown-item" type="button">Opcion 3</button></li>
             </ul>
@@ -133,13 +141,14 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <p class="info-oferta"><strong>Teléfono: </strong><?php echo $profesional['telefono']; ?></p>
                         <p class="info-oferta" style="color: #578640"><strong>Publicado por: </strong>SkillConnect Company</p>
                         <p class="info-oferta" style="color: #5483b3"><a href="">Saber más...</a></p>
+                        <!-- Botones de tarjetas (Aplicar/Whatsapp) -->
                         <div class="info-contenedor-btn">
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModalAplicar">Aplicar</button>
-
-
-                            <div class="info-oferta-contacto btn btn-primary">
-                                <a href="https://wa.link/v4qi3y" target="_blank"><img src="./img/svg/ico-wsp-white.svg" alt="ico-wsp"> | Más información</a>
-                            </div>
+                            <a href="https://wa.link/v4qi3y" target="_blank">
+                                <div class="info-oferta-contacto btn btn-primary">
+                                <img src="./img/svg/ico-wsp-white.svg" alt="ico-wsp">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -195,18 +204,10 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </script>
 
         </div>
-        <div class="separador-vertical d-none d-sm-block"></div>
-        <div class="menu-lateral d-none d-sm-block">
-            <!-- <h2>Menu lateral</h2> -->
-            <ul class="list-group list-group-flush"> 
-                <li class="list-group-item"><a href="#" class="list-group-link">Quiero ser Premium <img src="img/gif/star-animation.gif" alt="Descripción del GIF" width="30" height="auto"></a></li>
-                <li class="list-group-item"><a href="#" class="list-group-link">Últimas ofertas de trabajo!</a></li>
-                <li class="list-group-item"><a href="#" class="list-group-link">¿Como hacer mi CV?</a></li>
-                <li class="list-group-item"><a href="#" class="list-group-link">Plataformas de aprendizajes</a></li>
-                <li class="list-group-item"><a href="#" class="list-group-link">Sobre SkillConnect</a></li>
-                <li class="list-group-item"><a href="#" class="list-group-link">Ayuda</a></li>
-            </ul>
-        </div>
+
+        <!-- Include de menu lateral -->
+        <?php include 'include/menu_lateral.php'; ?>
+        
      </div>
     
      <?php include 'include/footer.php'; ?>

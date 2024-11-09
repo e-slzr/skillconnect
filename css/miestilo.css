@@ -2,7 +2,7 @@ a {
     text-decoration: none;
 }
 body {
-    background-color: #f6fbff;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
 }
@@ -59,6 +59,8 @@ h2 {
     justify-content: center;
     position: absolute;
     margin-top: 95px;
+    width: 100%;
+    /* border: 1px solid violet; */
 }
 .img-user {
     height: 35px;
@@ -81,18 +83,17 @@ h2 {
 .form-busqueda {
     display: flex;
     justify-content: center;
-    padding: 2% 5%;
+    padding: 2% 0%;
+    /* border: 1px solid violet; */
+    width: 70%;
 }
 .form-busqueda input {
-    width: 20%;
     margin: 0px 10px;
 }
 .form-busqueda button {
-    width: 20%;
     margin: 0px 10px;
 }
 .form-busqueda div {
-    width: 20%;
     margin: 0px 10px;
 }
 .carousel-item img {
@@ -100,10 +101,11 @@ h2 {
     object-fit: cover;
 }
 .contenedor-principal {
-    width: 85%;
+    width: 70%;
     padding: 20px;
     margin: auto;
     display: flex;
+    /* border: 1px solid violet; */
 }
 .menu-lateral {
     min-width: 300px;
@@ -129,7 +131,7 @@ h2 {
     margin: 0px 20px;
 }
 .contenedor-oferta {
-    width: 30%;
+    width: 40%;
     padding: 20px;
     border-radius: 10px;
     background-color: white;
@@ -139,6 +141,9 @@ h2 {
 }
 .contenedor-oferta form {
     padding: 25px 15px;
+}
+.contenedor-oferta form textarea {
+    height: 150px;
 }
 .contenedor-button button {
     width: 100%;
@@ -173,9 +178,10 @@ h2 {
     padding: 25px;
     background-color: white;
     margin: 0px 20px 20px 0px;
-    /* border: 1px solid rgb(196, 196, 196); */
+    border: 1px solid #e4e4e4;
     transition: 0.2s;
-    width: 400px;
+    width: 250px;
+    font-size: 10pt;
     flex-grow: 1;
 }
 .div-resultados:hover {
@@ -184,23 +190,28 @@ h2 {
     border: 1px solid rgb(196, 196, 196);
     box-shadow: 0px 4px 8px rgba(22, 121, 202, 0.5);
 }
-.icono-company {
-    background-color: #5483b3;
-    width: 80px;
-    height: 80px;
-    padding: 12px;
-    border-radius: 5px;
-    margin-right: 20px;
-}
 .div-resultados h3 {
     width: 100%;
     margin-top: 20px;
+    font-size: 14pt;
     flex-grow: 1;
+}
+.icono-company {
+    background-color: #5483b3;
+    width: 100%;
+    height: 80px;
+    padding: 12px;
+    border-radius: 5px;
+}
+.icono-company img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .info-oferta {
     width: 100%;
-    margin: 5px;
-    /* border: 1px solid black; */
+    margin: 2px 0px;
+    /* border: 1px solid violet; */
 }
 .info-contenedor-btn{
     display: flex;
@@ -212,6 +223,7 @@ h2 {
 .info-contenedor-btn button{
     border: none;
     width: 150px;
+    font-size: 10pt;
     background-color: #042254;
 }
 
@@ -223,7 +235,8 @@ h2 {
     border: none;
     color: white;
     margin-left: 20px;
-    width: 200px;
+    width: 75px;
+    font-size: 10pt;
     align-items: center;
     justify-content: center;
 }
@@ -243,6 +256,43 @@ h2 {
     bottom: 0;
     margin-top: 50px;
     background-color: #171a1f;
+}
+.contenedor-perfil {
+    display: flex;
+    justify-content: center;
+    margin-top: 64px;
+    padding-top: 80px;
+}
+.div-perfil {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70%;
+}
+.div-perfil h2 {
+    width: 100%;
+}
+.div-perfil-izq {
+    /* border: 1px solid violet; */
+    flex-grow: 1;
+}
+.div-perfil-izq ul li {
+    margin-top: 10px;
+}
+.div-perfil-izq ul li input {
+    margin-bottom: 5px;
+}
+.div-perfil-izq ul li img {
+    height: 200px;
+    margin: 20px 20px 20px 0px;
+}
+.perfil-contenedor-btn {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: end;
+    /* border: 1px solid violet; */
 }
 
 
@@ -328,12 +378,13 @@ h2 {
     align-content: center;
     border-radius: 5px;
 }
-#boton-cerrar {
-    /* background-color: #dc3545; */
-    /* color: white; */
-}
 #boton-cerrar:hover {
     background-color: #f54c5d;
+}
+#form-busqueda {
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid blue; */
 }
 
 
