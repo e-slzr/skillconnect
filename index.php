@@ -16,16 +16,16 @@ $profesion = isset($_GET['profesion']) ? $_GET['profesion'] : '';
 $ubicacion = isset($_GET['ubicacion']) ? $_GET['ubicacion'] : '';
 $busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 
-// Consulta de búsqueda con filtros
-$query = "SELECT * FROM perfiles WHERE 1=1";
+// Consulta de búsqueda con filtros, incluyendo nombre del usuario que publicó la oferta
+$query = "SELECT o.*, u.nombre AS nombre_usuario FROM ofertas o JOIN usuarios u ON o.usuario_id = u.id WHERE 1=1";
 if ($profesion) {
-    $query .= " AND profesion LIKE :profesion";
+    $query .= " AND o.profesion LIKE :profesion";
 }
 if ($ubicacion) {
-    $query .= " AND ubicacion LIKE :ubicacion";
+    $query .= " AND o.ubicacion LIKE :ubicacion";
 }
 if ($busqueda) {
-    $query .= " AND nombre LIKE :busqueda";
+    $query .= " AND o.nombre LIKE :busqueda";
 }
 
 $stmt = $conn->prepare($query);
@@ -40,6 +40,15 @@ if ($busqueda) {
 }
 $stmt->execute();
 $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Función para limitar la descripción a 20 palabras
+function limitarDescripcion($texto, $limitePalabras = 20) {
+    $palabras = explode(' ', $texto);
+    if (count($palabras) > $limitePalabras) {
+        return implode(' ', array_slice($palabras, 0, $limitePalabras)) . '...';
+    }
+    return $texto;
+}
 ?> 
 
 <!DOCTYPE html>
@@ -55,21 +64,22 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php include 'include/header.php'; ?>
     <?php include 'include/banner.php'; ?>
-    <!-- <?php include 'include/preloader.php'; ?> -->
+    <?php include 'include/preloader.php'; ?>
 
     <div class="div-titulo">
         <h1 class="titulo">Explora nuevas oportunidades y conecta con quienes buscan tu talento</h1>
     </div>
-    
 
+    
     <!-- Barra de búsqueda/filtros -->
-    <button class="btn btn-primary d-block d-sm-none" id="mostrar-filtros">Buscar</button>
+    <button class="btn btn-primary d-block d-sm-none mb-3" id="mostrar-filtros">Buscar</button>
     <div class="form-busqueda-contenedor" id="form-busqueda">
         <form method="GET" action="index.php" class="form-busqueda">
-            <!-- <input type="text" class="form-control" name="busqueda" placeholder="Buscar por nombre" value="<?php echo $busqueda; ?>"> -->
-            <input type="text" class="form-control" name="profesion" placeholder="Busca por nombre" value="<?php echo $profesion; ?>">
+            <!-- Campo de búsqueda por nombre -->
+            <input type="text" class="form-control mb-3" name="busqueda_nombre" placeholder="Busca por nombre" value="">
 
-            <div class="input-group">
+            <!-- Selector de ubicación -->
+            <div class="input-group mb-3">
                 <select class="form-control custom-select" name="ubicacion">
                     <option selected value="">Todas las ubicaciones</option>
                     <option value="Candelaria de la Frontera">Candelaria de la Frontera</option>
@@ -82,69 +92,52 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <option value="San Antonio Pajonal">San Antonio Pajonal</option>
                     <option value="San Sebastián Salitrillo">San Sebastián Salitrillo</option>
                     <option value="Santa Ana">Santa Ana</option>
-                    <option value="1Santa Rosa Guachipilín1">Santa Rosa Guachipilín</option>
+                    <option value="Santa Rosa Guachipilín">Santa Rosa Guachipilín</option>
                     <option value="Santiago de la Frontera">Santiago de la Frontera</option>
                     <option value="Texistepeque">Texistepeque</option>
                 </select>
             </div>
-            <div class="input-group">
-                <select class="form-control custom-select" name="categorias">
-                    <option selected value="">Todas las categorias</option>
-                    <option value="Candelaria de la Frontera">Profesiones</option>
-                    <option value="Chalchuapa">Oficios</option>
-                    <option value="Coatepeque">Pasantias</option>
+
+            <!-- Selector de profesión/categoría -->
+            <div class="input-group mb-3">
+                <select class="form-control custom-select" name="profesion">
+                    <option selected value="">Todas las categorías</option>
+                    <option value="Profesión">Profesiones</option>
+                    <option value="Oficio">Oficios</option>
+                    <option value="Pasantía">Pasantías</option>
                 </select>
             </div>
-
-            <!-- <input type="text" class="form-control" name="ubicacion" placeholder="Ubicación" value="<?php echo $ubicacion; ?>"> -->
-            <button type="submit" class="btn btn-primary" id="miboton">Buscar</button>
+            <button type="submit" class="btn" id="miboton">Buscar</button>
         </form>
     </div>
     <!-- finde barra de busqueda/filtros -->
-
-    <hr class="my-3"> <!-- espaciado horizontal -->
-
+    <hr class="my-3"> <!-- Espaciado horizontal -->
 
     <!-- Resultados de búsqueda -->
     <div class="contenedor-principal">
-
-        <!-- menu desplegable movil -->
-        <div class="btn-group dropup d-block d-sm-none mb-3" id="menu-desplegable-contenedor">
-            <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" id="menu-desplegable" aria-expanded="false">
-                <img src="img/svg/icon-menu.svg" alt="">
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li>rgb(180, 180, 180);<button class="dropdown-item" type="button">Opcion 1</button></li>
-                <li><button class="dropdown-item" type="button">Opcion 2</button></li>
-                <li><button class="dropdown-item" type="button">Opcion 3</button></li>
-            </ul>
-        </div>
-        <!-- fin de menu desplegable movil -->
-
         <div class="resultados">
             <h2 style="width: 100%; max-height: 70px">Ofertas de empleo</h2>
             <?php if (empty($profesionales)) : ?>
                 <p style="font-size: 30pt"><strong>No se encontraron resultados.</strong></p>
-
-            <!-- Tarjeta de oferta de empleo -->
             <?php else : ?>
                 <?php foreach ($profesionales as $profesional) : ?>
                     <div class="div-resultados">
                         <div class="icono-company">
-                            <img src="./img/svg/ico-company.svg" alt="Imagen empresa">
+                            <img src="./img/svg/icon_app.svg" alt="Imagen empresa">
                         </div>
                         <h3><strong><?php echo $profesional['nombre']; ?></strong></h3>
-                        <!-- <p>Profesión: <?php echo $profesional['profesion']; ?></p> -->
-                        <p class="info-oferta"><strong>Descripción: </strong><?php echo $profesional['descripcion']; ?></p>
+                        <p class="info-oferta"><strong>Categoría: </strong><?php echo $profesional['profesion']; ?></p>
+                        <p class="info-oferta"><strong>Descripción: </strong><?php echo limitarDescripcion($profesional['descripcion']); ?></p>
                         <p class="info-oferta"><strong>Ubicación: </strong><?php echo $profesional['ubicacion']; ?></p>
-                        <p class="info-oferta"><strong>Sueldo: </strong>$<?php echo $profesional['honorarios']; ?></p>
+                        <p class="info-oferta"><strong>Sueldo: </strong>$<?php echo $profesional['sueldo']; ?></p>
                         <p class="info-oferta"><strong>Teléfono: </strong><?php echo $profesional['telefono']; ?></p>
-                        <p class="info-oferta" style="color: #578640"><strong>Publicado por: </strong>SkillConnect Company</p>
+                        <p class="info-oferta" style="color: #578640"><strong>Publicado por: </strong><?php echo $profesional['nombre_usuario']; ?></p>
                         <p class="info-oferta" style="color: #5483b3"><a href="">Saber más...</a></p>
+                        
                         <!-- Botones de tarjetas (Aplicar/Whatsapp) -->
                         <div class="info-contenedor-btn">
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModalAplicar">Aplicar</button>
-                            <a href="https://wa.link/v4qi3y" target="_blank">
+                            <a href="https://wa.me/503<?php echo str_replace('-', '', $profesional['telefono']); ?>" target="_blank">
                                 <div class="info-oferta-contacto btn btn-primary">
                                 <img src="./img/svg/ico-wsp-white.svg" alt="ico-wsp">
                                 </div>
@@ -153,8 +146,8 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
-            <!-- Fin de tarjeta -->
-
+        </div>
+        <!-- Código de modal de aplicación y menú lateral -->
         <!-- Vertically centered modal -->
         <div class="modal" tabindex="-1" id="miModalAplicar">
             <div class="modal-dialog">
@@ -174,7 +167,6 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-
         <!-- Alerta personalizada -->
         <div class="" id="alertaAplicacion">
             <div>
@@ -184,7 +176,6 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <img src="img/gif/ok-animation.gif" alt="Descripción del GIF" width="50" height="auto">
             </div>
         </div>
-
         <!-- JavaScript para el botón "Enviar" -->
         <script>
         document.getElementById('miboton1').addEventListener('click', function() {
@@ -202,28 +193,20 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
             modal.hide();
         });
         </script>
-
-        </div>
-
-        <!-- Include de menu lateral -->
+        <!-- Menu lateral -->
         <?php include 'include/menu_lateral.php'; ?>
-        
     </div>
     
-     <?php include 'include/footer.php'; ?>
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <?php include 'include/footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
-
-
 </html>
 
 <script>
     const toggleButton = document.getElementById('mostrar-filtros');
     const formContainer = document.getElementById('form-busqueda');
-
     toggleButton.addEventListener('click', () => {
-        formContainer.classList.toggle('active'); // Alterna la clase 'active'
-        toggleButton.textContent = formContainer.classList.contains('active') ? 'Ocultar' : 'Buscar'; // Cambia el texto del botón
+        formContainer.classList.toggle('active'); 
+        toggleButton.textContent = formContainer.classList.contains('active') ? 'Ocultar' : 'Buscar'; 
     });
 </script>

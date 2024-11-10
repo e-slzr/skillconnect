@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>SkillConnect | Registro</title>
     <link rel="icon" type="image/x-icon" href="img/svg/icon_app.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/mistilo.css">
+    <link rel="stylesheet" href="css/miestilo.css">
 </head>
 <body id="body-login">
     <?php include 'include/preloader.php'; ?>
@@ -52,27 +52,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="d-none d-sm-block" id="registro-div">
         <h2 class="titulo">Registro de Usuario</h2><br>
         <form method="POST" action="register.php" onsubmit="return validarContrasena()">
+            
+
+            <input type="text" name="nombre" placeholder="Nombre completo" class="form-control mb-3" required>
+            <input type="text" name="profesion" placeholder="Profesion/Oficio" class="form-control mb-3" required>
+            <div class="doble-input">
+                <input type="text" name="dui" placeholder="DUI" class="form-control mb-3" required>
+                <input type="text" name="telefono" placeholder="Teléfono" class="form-control mb-3" required>
+            </div>
+            <input type="text" name="direccion" placeholder="Dirección" class="form-control mb-3" required>
+            <input type="email" name="correo" placeholder="Correo electrónico" class="form-control mb-3" required>
+            <textarea name="about" class="form-control mb-3" placeholder="Sobre mí..."></textarea>
+            <div class="doble-input">
+                <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="form-control mb-3" required>
+                <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" placeholder="Confirmar contraseña" class="form-control mb-3" required>
+            </div>            
             <div id="error-contrasena">
                 Las contraseñas no coinciden. Por favor, inténtalo de nuevo.
             </div>
-
-            <input type="text" name="nombre" placeholder="Nombre completo" class="form-control mb-3" required>
-            <input type="email" name="correo" placeholder="Correo electrónico" class="form-control mb-3" required>
-            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="form-control mb-3" required>
-            <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" placeholder="Confirmar contraseña" class="form-control mb-3" required>
-
             <div class="div-radios">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                    <label class="form-check-label" for="flexRadioDefault1" style="color: white">
-                        Profesion
-                    </label>
+                    <input class="form-check-input" type="radio" name="profesion" id="profesion1" value="Profesión" checked>
+                    <label class="form-check-label" for="profesion1">Empresa</label>
                 </div>
                 <div class="form-check mb-3 form-check-inline">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2" style="color: white">
-                        Oficio
-                    </label>
+                    <input class="form-check-input" type="radio" name="profesion" id="profesion2" value="Oficio">
+                    <label class="form-check-label" for="profesion2">Usuario</label>
                 </div>
             </div>
 

@@ -23,8 +23,8 @@ include 'config.php';
     <link rel="stylesheet" href="./css/miestilo.css">
 </head>
 <body>
-
     <?php include 'include/header.php'; ?>
+    <?php include 'include/preloader.php'; ?>
 
     <div class="contenedor-perfil">
         <div class="div-perfil">

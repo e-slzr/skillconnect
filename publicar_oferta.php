@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $telefono = $_POST['telefono'];
 
-    $stmt = $conn->prepare("INSERT INTO ofertas (usuario_id, nombre, profesion, descripcion, sueldo, telefono, ubicacion, foto_url, descripcion_empresa, email) VALUES (:usuario_id, :nombre, :profesion, :descripcion, :sueldo, :telefono, :ubicacion, :whatsapp_url, :foto_url, :descripcion_empresa, :email)");
+    $stmt = $conn->prepare("INSERT INTO ofertas (usuario_id, nombre, profesion, descripcion, sueldo, telefono, ubicacion, foto_url, descripcion_empresa, email) VALUES (:usuario_id, :nombre, :profesion, :descripcion, :sueldo, :telefono, :ubicacion, :foto_url, :descripcion_empresa, :email)");
     $stmt->bindParam(':usuario_id', $usuario_id);
     $stmt->bindParam(':nombre', $nombre);
     $stmt->bindParam(':profesion', $profesion);
@@ -58,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <?php include 'include/header.php'; ?>
     <?php include 'include/banner.php'; ?>
+    <?php include 'include/preloader.php'; ?>
     
-
     <h2 style="text-align: center; margin: 0px 0px 30px 0px; border-radius: 0">Nueva oferta</h2>
     
     <div class="contenedor-principal">
@@ -67,26 +67,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="POST" action="publicar_oferta.php" class="form-control mb-3">
                 <input type="text" name="nombre" placeholder="Nombre del puesto" class="form-control mb-3" required>
                 <div class="">
-                    <label for="" class="mb-3">Selecciona categoria:</label><br>
+                    <label for="" class="mb-3">Selecciona categoría:</label><br>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioProfesion" id="flexRadioDefault1" checked>
-                        <label class="form-check-label" for="radioProfesion">
-                            Profesión
-                        </label>
+                        <input class="form-check-input" type="radio" name="profesion" id="profesion1" value="Profesión" checked>
+                        <label class="form-check-label" for="profesion1">Profesión</label>
                     </div>
                     <div class="form-check mb-3 form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioProfesion" id="flexRadioDefault2">
-                        <label class="form-check-label" for="radioProfesion">
-                            Oficio
-                        </label>
+                        <input class="form-check-input" type="radio" name="profesion" id="profesion2" value="Oficio">
+                        <label class="form-check-label" for="profesion2">Oficio</label>
                     </div>
                     <div class="form-check mb-3 form-check-inline">
-                        <input class="form-check-input" type="radio" name="radioProfesion" id="flexRadioDefault2">
-                        <label class="form-check-label" for="radioProfesion">
-                            Pasantía
-                        </label>
+                        <input class="form-check-input" type="radio" name="profesion" id="profesion3" value="Pasantía">
+                        <label class="form-check-label" for="profesion3">Pasantía</label>
                     </div>
                 </div>
+
                 <textarea name="descripcion" placeholder="Descripción del puesto" class="form-control mb-3" required ></textarea>
                 <div class="input-group">
                     <span class="input-group-text mb-3" id="basic-addon1">$</span>
@@ -121,13 +116,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="input-group-text" id="basic-addon1">@</span>
                     <input type="email" name="email" placeholder="Correo de contacto" class="form-control" required>
                 </div>
-                <input type="tel" pattern="^\d{4}-\d{4}$" name="telefono" placeholder="Contacto de WhatsApp" class="form-control mb-3" title="Debe tener el formato xxxx-xxxx">
+                <input type="tel" pattern="^\d{4}-\d{4}$" name="telefono" placeholder="Contacto de WhatsApp" class="form-control mb-3" title="Debe tener el formato xxxx-xxxx" required>
                 <div class="contenedor-button">
                     <button type="submit" class="btn btn-primary" id="miboton">Publicar oferta</button>
                     <a href="index.php"><button type="button" 
                     class="btn btn-danger">Cancelar</button></a>
                 </div>
-                
             </form>
         </div>
 
