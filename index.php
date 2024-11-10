@@ -208,7 +208,7 @@ $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- Include de menu lateral -->
         <?php include 'include/menu_lateral.php'; ?>
         
-     </div>
+    </div>
     
      <?php include 'include/footer.php'; ?>
 
