@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':email', $email);
     $stmt->execute();
 
-    echo "Perfil creado exitosamente.";
+    echo "<script>alert('Perfil creado exitosamente.');</script>";
 }
 ?>
 
@@ -119,8 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="tel" pattern="^\d{4}-\d{4}$" name="telefono" placeholder="Contacto de WhatsApp" class="form-control mb-3" title="Debe tener el formato xxxx-xxxx" required>
                 <div class="contenedor-button">
                     <button type="submit" class="btn btn-primary" id="miboton">Publicar oferta</button>
-                    <a href="index.php"><button type="button" 
-                    class="btn btn-danger">Cancelar</button></a>
+                    <a href="index.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
                 </div>
             </form>
         </div>

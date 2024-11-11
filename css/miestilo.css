@@ -137,6 +137,7 @@ h2 {
 }
 .contenedor-oferta form {
     padding: 25px 15px;
+    border: none;
 }
 .contenedor-oferta form textarea {
     height: 150px;
@@ -144,6 +145,7 @@ h2 {
 .contenedor-button button {
     width: 100%;
     margin-bottom: 10px;
+    /* border: 1px solid violet; */
 }
 .div-radios {
     display: flex;
@@ -251,12 +253,35 @@ h2 {
     width: 20px;
 }
 .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 350px;
     position: relative;
     bottom: 0;
+    padding-top: 50px;
     margin-top: 50px;
     background-color: #171a1f;
+}
+.footer img{
+    height: 50px;
+}
+.social {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    /* border: 1px solid violet; */
+    margin-bottom: 25px;
+}
+.svg {
+    fill: white;
+    transition: 0.2s;
+}
+.svg:hover {
+    fill: #e59a00;
+    transition: 0.2s;
 }
 .contenedor-perfil {
     display: flex;
@@ -302,6 +327,35 @@ h2 {
 .doble-input input {
     width: 49%;
 }
+.contenedor-postulaciones {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    /* border: 5px solid violet; */
+}
+.lista-postulaciones {
+    /* border: 1px solid violet; */
+    font-size: 11pt;
+    padding: 0px;
+}
+.postulacion {
+    display: flex;
+    padding-left: 20px;
+    height: 75px;
+    border-radius: 5px;
+    background-color: #f3f2ee;
+    align-items: center;
+    transition: 0.2s;
+}
+.postulacion:hover {
+    transition: 0.2s;
+    scale: 1.02;
+    border: 1px solid rgb(196, 196, 196);
+    box-shadow: 0px 4px 8px rgba(22, 121, 202, 0.5);
+}
+.info-postulacion {
+    color: #254d94;
+}
 
 
 /* *********************************** */
@@ -331,7 +385,7 @@ h2 {
     border: none;
     color: white;
     height: 37px;
-    width: 250px;
+    width: 100%;
 }
 #miboton:hover {
     background-color: #254d94;
@@ -390,6 +444,9 @@ h2 {
     align-content: center;
     border-radius: 5px;
 }
+#boton-cerrar {
+    border: none;
+}
 #boton-cerrar:hover {
     background-color: #f54c5d;
 }
@@ -398,7 +455,36 @@ h2 {
     justify-content: center;
     /* border: 1px solid blue; */
 }
-
+#boton-menu {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #042254;
+    right: 25px;
+    bottom: 25px;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    z-index: 999;
+}
+#menuLateral {
+}
+#menuLateralLabel {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    background-color: #042254;
+    color: white;
+    width: 100%;
+    height: 75px;
+    font-size: 20pt;
+}
+.offcanvas-body a {
+    text-decoration: none;
+    color: #052659;
+}
 
 /* Estilos para el preloader */
 #preloader {
@@ -456,13 +542,13 @@ h2 {
         gap: 10px;
     }
     .form-busqueda input {
-        width: 90%;
+        /* width: 90%; */
     }
     .form-busqueda button {
-        width: 90%;
+        /* width: 90%; */
     }
     .form-busqueda div {
-        width: 90%;
+        /* width: 90%; */
         margin: 0px 10px;
     }
     .login-div-movil {
@@ -496,6 +582,52 @@ h2 {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+    .contenedor-postulaciones {
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+        /* border: 5px solid violet; */
+    }
+    .lista-postulaciones {
+        /* border: 1px solid violet; */
+        font-size: 8pt;
+        padding: 0px;
+    }
+    .postulacion {
+        display: flex;
+        padding-left: 20px;
+        height: 75px;
+        border-radius: 5px;
+        background-color: #f3f2ee;
+        align-items: center;
+        flex-direction: column;
+        transition: 0.2s;
+    }
+    .postulacion:hover {
+        transition: 0.2s;
+        scale: 1.02;
+        border: 1px solid rgb(196, 196, 196);
+        box-shadow: 0px 4px 8px rgba(22, 121, 202, 0.5);
+    }
+    .info-postulacion {
+        color: #254d94;
+    }
+    .div-perfil {
+        width: 90%;
+        font
+    }
+    .div-resultados {
+        margin: 10px 0px;
+    }
+    .contenedor-oferta {
+        width: 100%;
+        /* border: 1px solid violet; */
+    }
+    .contenedor-oferta form {
+        padding: 0px;
+        margin: 0px;
+        border: none;
     }
     #menu-desplegable {
         width: 65px;

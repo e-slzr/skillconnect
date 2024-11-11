@@ -2,42 +2,52 @@
 session_start();
 
 // Asegurarse de que el usuario esté autenticado
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
-    exit;
-}
+// if (!isset($_SESSION['usuario_id'])) {
+//     header("Location: login.php");
+//     exit;
+// }
 
-$nombre_usuario = $_SESSION['nombre'];
+// $nombre_usuario = $_SESSION['nombre'];
 
 include 'config.php';
 
 // Verificamos si hay filtros de búsqueda aplicados
-$profesion = isset($_GET['profesion']) ? $_GET['profesion'] : '';
+$nombre = isset($_GET['nombre']) ? $_GET['nombre'] : '';
 $ubicacion = isset($_GET['ubicacion']) ? $_GET['ubicacion'] : '';
-$busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+$profesion = isset($_GET['profesion']) ? $_GET['profesion'] : ''; // Corrección aquí
 
-// Consulta de búsqueda con filtros, incluyendo nombre del usuario que publicó la oferta
-$query = "SELECT o.*, u.nombre AS nombre_usuario FROM ofertas o JOIN usuarios u ON o.usuario_id = u.id WHERE 1=1";
-if ($profesion) {
-    $query .= " AND o.profesion LIKE :profesion";
+// Construcción de la consulta SQL con filtros
+$query = "SELECT o.*, u.nombre AS nombre_usuario 
+          FROM ofertas o 
+          JOIN usuarios u ON o.usuario_id = u.id 
+          WHERE 1=1";
+
+// Aplicar filtros solo si tienen un valor
+if (!empty($nombre)) {
+    $query .= " AND o.nombre LIKE :nombre";
 }
-if ($ubicacion) {
+if (!empty($ubicacion)) {
     $query .= " AND o.ubicacion LIKE :ubicacion";
 }
-if ($busqueda) {
-    $query .= " AND o.nombre LIKE :busqueda";
+if (!empty($profesion)) {
+    $query .= " AND o.profesion LIKE :profesion";
 }
 
+// Preparar la consulta
 $stmt = $conn->prepare($query);
-if ($profesion) {
-    $stmt->bindValue(':profesion', "%$profesion%");
+
+// Asignar los valores a los parámetros si los filtros están activos
+if (!empty($nombre)) {
+    $stmt->bindValue(':nombre', "%$nombre%");
 }
-if ($ubicacion) {
+if (!empty($ubicacion)) {
     $stmt->bindValue(':ubicacion', "%$ubicacion%");
 }
-if ($busqueda) {
-    $stmt->bindValue(':busqueda', "%$busqueda%");
+if (!empty($profesion)) {
+    $stmt->bindValue(':profesion', "%$profesion%");
 }
+
+// Ejecutar la consulta y obtener los resultados
 $stmt->execute();
 $profesionales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -49,7 +59,9 @@ function limitarDescripcion($texto, $limitePalabras = 20) {
     }
     return $texto;
 }
-?> 
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -76,10 +88,10 @@ function limitarDescripcion($texto, $limitePalabras = 20) {
     <div class="form-busqueda-contenedor" id="form-busqueda">
         <form method="GET" action="index.php" class="form-busqueda">
             <!-- Campo de búsqueda por nombre -->
-            <input type="text" class="form-control mb-3" name="busqueda_nombre" placeholder="Busca por nombre" value="">
+            <input type="text" class="form-control mb-1" name="nombre" placeholder="Busca por nombre" value="">
 
             <!-- Selector de ubicación -->
-            <div class="input-group mb-3">
+            <div class="input-group mb-1">
                 <select class="form-control custom-select" name="ubicacion">
                     <option selected value="">Todas las ubicaciones</option>
                     <option value="Candelaria de la Frontera">Candelaria de la Frontera</option>
@@ -99,12 +111,12 @@ function limitarDescripcion($texto, $limitePalabras = 20) {
             </div>
 
             <!-- Selector de profesión/categoría -->
-            <div class="input-group mb-3">
+            <div class="input-group mb-1">
                 <select class="form-control custom-select" name="profesion">
                     <option selected value="">Todas las categorías</option>
-                    <option value="Profesión">Profesiones</option>
+                    <option value="Profesion">Profesiones</option>
                     <option value="Oficio">Oficios</option>
-                    <option value="Pasantía">Pasantías</option>
+                    <option value="Pasantia">Pasantías</option>
                 </select>
             </div>
             <button type="submit" class="btn" id="miboton">Buscar</button>
@@ -150,7 +162,7 @@ function limitarDescripcion($texto, $limitePalabras = 20) {
         <!-- Código de modal de aplicación y menú lateral -->
         <!-- Vertically centered modal -->
         <div class="modal" tabindex="-1" id="miModalAplicar">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Sube tu hoja de vida</h5>

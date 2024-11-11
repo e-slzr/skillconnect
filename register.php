@@ -3,9 +3,14 @@ include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
+    $profesion = $_POST['profesion'];
+    $dui = $_POST['dui'];
+    $telefono = $_POST['telefono'];
+    $direccion = $_POST['direccion'];
     $correo = $_POST['correo'];
+    $about = $_POST['about'];
     $contrasena = $_POST['contrasena'];
-    $rol = $_POST['rol'];
+    $rol = $_POST['profesion'];  // Para el rol seleccionamos el valor de "profesion" en el form como "Empresa" o "Usuario"
 
     // Verificar si el correo ya está registrado
     $stmt = $conn->prepare("SELECT * FROM usuarios WHERE correo = :correo");
@@ -19,22 +24,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $contrasena_hash = password_hash($contrasena, PASSWORD_BCRYPT);
 
         // Insertar el nuevo usuario en la base de datos
-        $stmt = $conn->prepare("INSERT INTO usuarios (nombre, correo, contrasena, rol) VALUES (:nombre, :correo, :contrasena, :rol)");
+        $stmt = $conn->prepare("INSERT INTO usuarios (nombre, profesion, dui, telefono, direccion, correo, about, contrasena, rol) VALUES (:nombre, :profesion, :dui, :telefono, :direccion, :correo, :about, :contrasena, :rol)");
         $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':profesion', $profesion);
+        $stmt->bindParam(':dui', $dui);
+        $stmt->bindParam(':telefono', $telefono);
+        $stmt->bindParam(':direccion', $direccion);
         $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':about', $about);
         $stmt->bindParam(':contrasena', $contrasena_hash);
         $stmt->bindParam(':rol', $rol);
-        
-        // Ejecutar la inserción
-        $stmt->execute();
 
-        echo "Registro exitoso. Ahora puedes iniciar sesión.";
-        header("Location: login.php");
-        exit;
+        // Ejecutar la inserción
+        if ($stmt->execute()) {
+            echo "Registro exitoso. Ahora puedes iniciar sesión.";
+            header("Location: login.php");
+            exit;
+        } else {
+            echo "Hubo un error al registrar el usuario.";
+        }
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -52,8 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="d-none d-sm-block" id="registro-div">
         <h2 class="titulo">Registro de Usuario</h2><br>
         <form method="POST" action="register.php" onsubmit="return validarContrasena()">
-            
-
             <input type="text" name="nombre" placeholder="Nombre completo" class="form-control mb-3" required>
             <input type="text" name="profesion" placeholder="Profesion/Oficio" class="form-control mb-3" required>
             <div class="doble-input">
@@ -72,11 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="div-radios">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="profesion" id="profesion1" value="Profesión" checked>
+                    <input class="form-check-input" type="radio" name="rol" id="profesion1" value="Profesional" checked>
                     <label class="form-check-label" for="profesion1">Empresa</label>
                 </div>
                 <div class="form-check mb-3 form-check-inline">
-                    <input class="form-check-input" type="radio" name="profesion" id="profesion2" value="Oficio">
+                    <input class="form-check-input" type="radio" name="rol" id="profesion2" value="Usuario">
                     <label class="form-check-label" for="profesion2">Usuario</label>
                 </div>
             </div>
@@ -127,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </body>
 </html>
 
-
+ 
 <script>
     function validarContrasena() {
         const contrasena = document.getElementById("contrasena").value;

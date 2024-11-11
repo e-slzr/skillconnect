@@ -1,16 +1,46 @@
 <?php
-session_start();
+    session_start();
+    include 'config.php'; // Archivo de configuración de conexión a la base de datos
 
-// Asegurarse de que el usuario esté autenticado
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
-    exit;
-}
+    // Asegúrate de que el usuario esté autenticado
+    if (!isset($_SESSION['usuario_id'])) {
+        header("Location: login.php"); // Redirige al login si no está autenticado
+        exit;
+    }
 
-$nombre_usuario = $_SESSION['nombre'];
+    $usuario_id = $_SESSION['usuario_id']; // Obtiene el ID del usuario desde la sesión
 
+    try {
+        // Preparar la consulta para obtener los datos del usuario
+        $stmt = $conn->prepare("SELECT * FROM usuarios WHERE id = :id");
+        $stmt->bindParam(':id', $usuario_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Obtener los datos del usuario
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            // Aquí puedes acceder a los datos del usuario
+            $nombre = $usuario['nombre'];
+            $dui = $usuario['dui'];
+            $correo = $usuario['correo'];
+            $profesion = $usuario['profesion'];
+            $telefono = $usuario['telefono'];
+            $direccion = $usuario['direccion'];
+            $about = $usuario['about'];
+            $rol = $usuario['rol'];
+            $nombre_usuario = $usuario['nombre'];
+            // Otros datos que tengas en la tabla `usuarios`
+        } else {
+            echo "Usuario no encontrado.";
+        }
+
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
 include 'config.php';
-?> 
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,17 +66,17 @@ include 'config.php';
                         <img src="./img/svg/user-man.svg" alt=""></strong>
                         <a href="">Editar foto de perfil</a>
                     </li>
-                    <li class="list-group-item"><strong>Profesión/Oficio: </strong><input class="form-control" readonly></li>
-                    <li class="list-group-item"><strong>Nombre: </strong><input class="form-control" readonly></li>
-                    <li class="list-group-item"><strong>DUI: </strong><input class="form-control" readonly></li>
-                    <li class="list-group-item"><strong>Dirección: </strong><input class="form-control" readonly></li>
-                    <li class="list-group-item"><strong>Correo: </strong><input class="form-control" readonly></li>
-                    <li class="list-group-item"><strong>Teléfono: </strong><input class="form-control" readonly></li>
+                    <li class="list-group-item"><strong>Profesión/Oficio: </strong><input class="form-control" value="<?php echo $profesion?>" readonly></li>
+                    <li class="list-group-item"><strong>Nombre: </strong><input class="form-control" value="<?php echo $nombre?>" readonly></li>
+                    <li class="list-group-item"><strong>DUI: </strong><input class="form-control" value="<?php echo $dui?>" readonly></li>
+                    <li class="list-group-item"><strong>Dirección: </strong><input class="form-control" value="<?php echo $direccion ?>" readonly></li>
+                    <li class="list-group-item"><strong>Correo: </strong><input class="form-control" value="<?php echo $correo?>" readonly></li>
+                    <li class="list-group-item"><strong>Teléfono: </strong><input class="form-control" value="<?php echo $telefono ?>" readonly></li>
                     <li class="list-group-item">
                         <strong>Sobre mi:<br></strong>
-                        <textarea name="" id="" class="form-control" rows="4" readonly></textarea>
+                        <textarea name="" id="" class="form-control" rows="4" value="" readonly><?php echo $about ?></textarea>
                     </li>
-                    <li class="list-group-item"><strong>Tipo de perfil: </strong><input class="form-control" readonly></li>
+                    <li class="list-group-item"><strong>Tipo de perfil: </strong><input class="form-control" value="<?php echo $rol ?>" readonly></li>
                 </ul>
                 <div class="perfil-contenedor-btn">
                     <button class="btn btn-primary" id="miboton">Editar perfil</button>
