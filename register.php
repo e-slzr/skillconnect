@@ -102,27 +102,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="d-block d-sm-none" id="registro-div-movil">
         <h2 class="titulo">Registro de Usuario</h2><br>
         <form method="POST" action="register.php" onsubmit="return validarContrasena()">
-            <div id="error-contrasena">
-                Las contraseñas no coinciden.
+            <<input type="text" name="nombre" placeholder="Nombre completo" class="form-control mb-3" required>
+            <input type="text" name="profesion" placeholder="Profesion/Oficio" class="form-control mb-3" required>
+            <div class="doble-input">
+                <input type="text" name="dui" placeholder="DUI" class="form-control mb-3" required>
+                <input type="text" name="telefono" placeholder="Teléfono" class="form-control mb-3" required>
             </div>
-
-            <input type="text" name="nombre" placeholder="Nombre completo" class="form-control mb-3" required>
+            <input type="text" name="direccion" placeholder="Dirección" class="form-control mb-3" required>
             <input type="email" name="correo" placeholder="Correo electrónico" class="form-control mb-3" required>
-            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="form-control mb-3" required>
-            <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" placeholder="Confirmar contraseña" class="form-control mb-3" required>
-
-            <div class="div-radios">
+            <textarea name="about" class="form-control mb-3" placeholder="Sobre mí..."></textarea>
+            <div class="doble-input">
+                <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" class="form-control mb-3" required>
+                <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" placeholder="Confirmar contraseña" class="form-control mb-3" required>
+            </div>            
+            <div id="error-contrasena">
+                Las contraseñas no coinciden. Por favor, inténtalo de nuevo.
+            </div>
+            <div class="div-radios"> 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                    <label class="form-check-label" for="flexRadioDefault1" style="color: white">
-                        Profesion
-                    </label>
+                    <input class="form-check-input" type="radio" name="rol" id="profesion1" value="Profesional" checked>
+                    <label class="form-check-label" for="profesion1">Empresa</label>
                 </div>
                 <div class="form-check mb-3 form-check-inline">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2" style="color: white">
-                        Oficio
-                    </label>
+                    <input class="form-check-input" type="radio" name="rol" id="profesion2" value="Usuario">
+                    <label class="form-check-label" for="profesion2">Usuario</label>
                 </div>
             </div>
 
