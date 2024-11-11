@@ -127,6 +127,7 @@ function limitarDescripcion($texto, $limitePalabras = 20) {
 
     <!-- Resultados de búsqueda -->
     <div class="contenedor-principal">
+    <?php if (isset($_SESSION['usuario_id'])): ?>
         <div class="resultados">
             <h2 style="width: 100%; max-height: 70px">Ofertas de empleo</h2>
             <?php if (empty($profesionales)) : ?>
@@ -159,6 +160,40 @@ function limitarDescripcion($texto, $limitePalabras = 20) {
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+    <?php else: ?>
+        <div class="resultados">
+            <h2 style="width: 100%; max-height: 70px">Ofertas de empleo</h2>
+            <?php if (empty($profesionales)) : ?>
+                <p style="font-size: 30pt"><strong>No se encontraron resultados.</strong></p>
+            <?php else : ?>
+                <?php foreach ($profesionales as $profesional) : ?>
+                    <div class="div-resultados">
+                        <div class="icono-company">
+                            <img src="./img/svg/icon_app.svg" alt="Imagen empresa">
+                        </div>
+                        <h3><strong><?php echo $profesional['nombre']; ?></strong></h3>
+                        <p class="info-oferta"><strong>Categoría: </strong><?php echo $profesional['profesion']; ?></p>
+                        <p class="info-oferta"><strong>Descripción: </strong><?php echo limitarDescripcion($profesional['descripcion']); ?></p>
+                        <p class="info-oferta"><strong>Ubicación: </strong><?php echo $profesional['ubicacion']; ?></p>
+                        <p class="info-oferta"><strong>Sueldo: </strong>$<?php echo $profesional['sueldo']; ?></p>
+                        <p class="info-oferta"><strong>Teléfono: </strong><?php echo $profesional['telefono']; ?></p>
+                        <p class="info-oferta" style="color: #578640"><strong>Publicado por: </strong><?php echo $profesional['nombre_usuario']; ?></p>
+                        <p class="info-oferta" style="color: #5483b3"><a href="">Saber más...</a></p>
+                        
+                        <!-- Botones de tarjetas (Aplicar/Whatsapp) -->
+                        <!-- <div class="info-contenedor-btn">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModalAplicar">Aplicar</button>
+                            <a href="https://wa.me/503<?php echo str_replace('-', '', $profesional['telefono']); ?>" target="_blank">
+                                <div class="info-oferta-contacto btn btn-primary">
+                                <img src="./img/svg/ico-wsp-white.svg" alt="ico-wsp">
+                                </div>
+                            </a>
+                        </div> -->
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
         <!-- Código de modal de aplicación y menú lateral -->
         <!-- Vertically centered modal -->
         <div class="modal" tabindex="-1" id="miModalAplicar">

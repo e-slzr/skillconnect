@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="contenedor-button">
                 <button type="submit" class="btn btn-primary" id="button">Registrar</button>
                 <!-- Botón "Cancelar" para regresar al login -->
-                <a href="login.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
+                <a href="index.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
             </div>
         </form>
     </div>
