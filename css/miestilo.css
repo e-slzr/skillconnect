@@ -469,8 +469,6 @@ h2 {
     border-radius: 100%;
     z-index: 999;
 }
-#menuLateral {
-}
 #menuLateralLabel {
     display: flex;
     align-items: center;
@@ -541,12 +539,6 @@ h2 {
         padding: 20px;
         gap: 10px;
     }
-    .form-busqueda input {
-        /* width: 90%; */
-    }
-    .form-busqueda button {
-        /* width: 90%; */
-    }
     .form-busqueda div {
         /* width: 90%; */
         margin: 0px 10px;
@@ -615,7 +607,6 @@ h2 {
     }
     .div-perfil {
         width: 90%;
-        font
     }
     .div-resultados {
         margin: 10px 0px;
@@ -643,7 +634,6 @@ h2 {
     #menu-desplegable:active {
         background-color: #c1e8ff;
     }
-
 }
 
 
